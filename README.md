@@ -1,6 +1,6 @@
 <p align="center" style="background-color: #CCCCCC;">
   <a href="https://www.reactvision.xyz/">
-    <img src="https://jjhxsdfjbcyrgmbjocnp.supabase.co/storage/v1/object/public/Downloads/ReactVision/rv-logo-icon.png" alt="react vision logo">
+    <img src="https://jjhxsdfjbcyrgmbjocnp.supabase.co/storage/v1/object/public/Downloads/ReactVision/rv-logo-icon.png" alt="react vision logo" width="120px" height="120px">
   </a>
 </p>
 
@@ -49,7 +49,9 @@ Whether you're looking for support with building your AR or VR application or yo
 
 # A little history...
 
-ViroReact was originaly developed by the [Viro Media](http://www.viromedia.com/), but was open-sourced in 2019. In late 2020, the Viro Community was formed to help maintain and move the project onwards, updating it so it could run with modern versions of react native, and start to add in new features. Following years of support, in 2025, [Morrow acquired ReactVision](https://www.themorrow.digital/blog/morrow-acquires-reactvision-and-viroreact-library) to help accelerate its development and give it the resources needed to enable ReactVision to capture the rapidly growing demand for ViroReact. ReactVision now has a team working full-time to help ensure the codebase is updated and ready for the future of XR / Spatial Computing.
+ViroReact was originally developed by the [Viro Media](http://www.viromedia.com/), but was open-sourced in 2019. In late 2020, the Viro Community was formed to help maintain and move the project onwards, updating it so it could run with modern versions of React Native, and start to add in new features.
+
+Following years of support, in 2025, [Morrow acquired ReactVision](https://www.themorrow.digital/blog/morrow-acquires-reactvision-and-viroreact-library) to help accelerate its development and give it the resources needed to enable ReactVision to capture the rapidly growing demand for ViroReact. ReactVision now has a team working full-time to help ensure the codebase is updated and ready for the future of XR / Spatial Computing. Our vision is to enable React Native developers to build AR and VR applications that can run across all XR devices (smartphones, smart glasses, and headsets) off of a single React Native codebase. 
 
 We, as a community, owe a great debt to Viro Media and the people who developed this library originally. We hope to make them proud as it continues to develop and grow within ReactVision.
 
