@@ -35,31 +35,6 @@ If you are starting a fresh project with ViroReact, consider cloning one of our 
 - [React Native](https://github.com/ReactVision/starter-kit)
 - [Expo + JavaScript](https://github.com/ReactVision/expo-starter-kit)
 
-## React Native New Architecture Support
-
-ViroReact now supports React Native's New Architecture (Fabric) with automatic detection. The library will automatically detect whether your app is using the New Architecture and use the appropriate implementation:
-
-```javascript
-// Import ViroReact components - they will automatically use the right implementation
-import { ViroARScene, Viro3DObject } from "@reactvision/react-viro";
-```
-
-If you prefer to explicitly use a specific implementation, you can still do so:
-
-```javascript
-// Explicitly use the Legacy Architecture implementation
-import { ViroARScene, Viro3DObject } from "@reactvision/react-viro/index";
-
-// Explicitly use the New Architecture (Fabric) implementation
-import { ViroARScene, Viro3DObject } from "@reactvision/react-viro/fabric";
-```
-
-The API remains the same across all implementations, but the New Architecture version provides better performance and compatibility with future React Native versions.
-
-> **Note:** The Legacy Architecture support is deprecated and will be removed in version 3.0.0. We recommend enabling the New Architecture in your app for better performance and future compatibility.
-
-For more detailed information about the New Architecture support, including API compatibility and known limitations, see the [NEW_ARCHITECTURE.md](./NEW_ARCHITECTURE.md) document.
-
 # Examples
 
 Check out the [examples](./examples) directory for sample code demonstrating how to use ViroReact with automatic architecture detection and other features.
