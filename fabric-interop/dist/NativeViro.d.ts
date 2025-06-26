@@ -13,7 +13,11 @@ export declare const generateCallbackId: () => string;
 export declare function handleViroEvent(callbackId: string, event: any): void;
 export declare function registerEventListener(nodeId: string, eventName: string, callback: ViroEventCallback): string;
 export declare function unregisterEventListener(nodeId: string, eventName: string, callbackId: string): void;
-export declare function initializeViro(): Promise<boolean>;
+export declare function initializeViro(config?: {
+    debug?: boolean;
+    arEnabled?: boolean;
+    worldAlignment?: string;
+}): Promise<boolean>;
 export declare function createScene(sceneId: string, sceneType: string, props?: ViroNodeProps): void;
 export declare function activateScene(sceneId: string): void;
 export declare function deactivateScene(sceneId: string): void;

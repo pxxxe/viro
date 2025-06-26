@@ -19,9 +19,12 @@ var __createBinding = (this && this.__createBinding) || (Object.create ? (functi
 var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateNodeId = exports.ViroARTrackingTargets = exports.ViroMaterials = exports.ViroAnimations = exports.ViroARObjectMarker = exports.ViroARImageMarker = exports.ViroARPlaneSelector = exports.ViroARPlane = exports.ViroARCamera = exports.Viro3DSceneNavigator = exports.ViroARSceneNavigator = exports.ViroVRSceneNavigator = exports.ViroSceneNavigator = exports.ViroMaterialVideo = exports.ViroAnimatedComponent = exports.ViroParticleEmitter = exports.ViroSpinner = exports.ViroController = exports.ViroButton = exports.ViroSpatialSound = exports.ViroSoundField = exports.ViroSound = exports.ViroOrbitCamera = exports.ViroCamera = exports.ViroLightingEnvironment = exports.ViroOmniLight = exports.ViroSpotLight = exports.ViroDirectionalLight = exports.ViroAmbientLight = exports.ViroPortalScene = exports.ViroPortal = exports.ViroSkyBox = exports.Viro360Video = exports.Viro360Image = exports.ViroAnimatedImage = exports.ViroVideo = exports.ViroImage = exports.ViroText = exports.ViroSurface = exports.ViroPolyline = exports.ViroPolygon = exports.ViroQuad = exports.ViroGeometry = exports.Viro3DObject = exports.ViroSphere = exports.ViroBox = exports.ViroFlexView = exports.ViroARScene = exports.ViroScene = exports.ViroNode = void 0;
-exports.updateMaterial = exports.executeAnimation = exports.updateNativeMaterial = exports.executeNativeAnimation = exports.isViroJSIAvailable = exports.setARImageTargets = exports.setARPlaneDetection = exports.createAnimation = exports.createMaterial = exports.removeChild = exports.addChild = exports.deleteNode = exports.updateNode = exports.createNode = exports.performMemoryCleanup = exports.getMemoryStats = exports.getSceneState = exports.destroyScene = exports.deactivateScene = exports.activateScene = exports.createScene = exports.initializeViro = exports.unregisterEventListener = exports.registerEventListener = exports.handleViroEvent = exports.generateCallbackId = void 0;
+exports.ViroEventsManager = exports.updateMaterial = exports.executeAnimation = exports.updateNativeMaterial = exports.executeNativeAnimation = exports.isViroJSIAvailable = exports.setARImageTargets = exports.setARPlaneDetection = exports.createAnimation = exports.createMaterial = exports.removeChild = exports.addChild = exports.deleteNode = exports.updateNode = exports.createNode = exports.performMemoryCleanup = exports.getMemoryStats = exports.getSceneState = exports.destroyScene = exports.deactivateScene = exports.activateScene = exports.createScene = exports.initializeViro = exports.unregisterEventListener = exports.registerEventListener = exports.handleViroEvent = exports.generateCallbackId = void 0;
 __exportStar(require("./ViroFabricContainer"), exports);
 // Export components explicitly to ensure they're found by validation
 var components_1 = require("./components");
@@ -109,4 +112,7 @@ Object.defineProperty(exports, "updateNativeMaterial", { enumerable: true, get: 
 var NativeViro_3 = require("./NativeViro");
 Object.defineProperty(exports, "executeAnimation", { enumerable: true, get: function () { return NativeViro_3.executeAnimation; } });
 Object.defineProperty(exports, "updateMaterial", { enumerable: true, get: function () { return NativeViro_3.updateMaterial; } });
+// Export event management utilities
+var ViroEventsManager_1 = require("./ViroEventsManager");
+Object.defineProperty(exports, "ViroEventsManager", { enumerable: true, get: function () { return __importDefault(ViroEventsManager_1).default; } });
 //# sourceMappingURL=index.js.map

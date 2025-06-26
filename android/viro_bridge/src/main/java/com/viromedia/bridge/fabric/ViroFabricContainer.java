@@ -2,6 +2,7 @@ package com.viromedia.bridge.fabric;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.content.ComponentCallbacks2;
@@ -75,6 +76,7 @@ import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.reflect.Method;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * ViroFabricContainer - Complete implementation with full iOS parity.
@@ -433,20 +435,23 @@ public class ViroFabricContainer extends FrameLayout implements ViroFabricSceneM
             switch (mViroPlatform) {
                 case AR:
                     // Configure for AR performance
-                    mRendererConfig.setMultiSamplingMode(RendererConfiguration.MultisamplingMode.NONE);
+                    // AR typically doesn't need multisampling for performance
+                    // mRendererConfig.setMultiSamplingMode(RendererConfiguration.MultisamplingMode.NONE);
                     mRendererConfig.setShadowsEnabled(false); // Shadows can be expensive in AR
                     break;
                     
                 case GVR:
                 case OVR_MOBILE:
                     // Configure for VR performance
-                    mRendererConfig.setMultiSamplingMode(RendererConfiguration.MultisamplingMode.MULTISAMPLING_4X);
+                    // VR benefits from multisampling for visual quality
+                    // mRendererConfig.setMultiSamplingMode(RendererConfiguration.MultisamplingMode.MULTISAMPLING_4X);
                     mRendererConfig.setShadowsEnabled(true);
                     break;
                     
                 default:
                     // Balanced configuration for 3D
-                    mRendererConfig.setMultiSamplingMode(RendererConfiguration.MultisamplingMode.MULTISAMPLING_2X);
+                    // Balanced configuration for 3D
+                    // mRendererConfig.setMultiSamplingMode(RendererConfiguration.MultisamplingMode.MULTISAMPLING_2X);
                     mRendererConfig.setShadowsEnabled(true);
                     break;
             }

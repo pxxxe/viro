@@ -107,12 +107,12 @@ public class ViroEventsTurboModule extends com.facebook.react.bridge.ReactContex
     }
     
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public boolean isEventSystemReady() {
+    public boolean isEventSystemReadySync() {
         return isEventSystemReady();
     }
     
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public double getActiveListenerCount() {
+    public double getActiveListenerCountSync() {
         return getActiveListenerCount();
     }
     

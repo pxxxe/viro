@@ -27,6 +27,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.os.Debug;
 import android.os.Process;
+import android.os.SystemClock;
 import android.system.Os;
 import android.system.ErrnoException;
 
@@ -612,14 +613,32 @@ public class ViroFabricSceneManager {
             Debug.MemoryInfo memInfo = new Debug.MemoryInfo();
             Debug.getMemoryInfo(memInfo);
             
-            stats.putDouble("nativeHeapSizeMB", memInfo.nativeHeapSize / 1024.0);
-            stats.putDouble("nativeHeapAllocatedMB", memInfo.nativeHeapAllocatedSize / 1024.0);
-            stats.putDouble("nativeHeapFreeMB", memInfo.nativeHeapFreeSize / 1024.0);
-            
-            // Dalvik heap info
-            stats.putDouble("dalvikHeapSizeMB", memInfo.dalvikHeapSize / 1024.0);
-            stats.putDouble("dalvikHeapAllocatedMB", memInfo.dalvikHeapAllocatedSize / 1024.0);
-            stats.putDouble("dalvikHeapFreeMB", memInfo.dalvikHeapFreeSize / 1024.0);
+            // These fields are deprecated in newer Android versions
+            // Using reflection to access them if available
+            try {
+                java.lang.reflect.Field nativeHeapSizeField = Debug.MemoryInfo.class.getField("nativeHeapSize");
+                stats.putDouble("nativeHeapSizeMB", nativeHeapSizeField.getInt(memInfo) / 1024.0);
+                
+                java.lang.reflect.Field nativeHeapAllocatedSizeField = Debug.MemoryInfo.class.getField("nativeHeapAllocatedSize");
+                stats.putDouble("nativeHeapAllocatedMB", nativeHeapAllocatedSizeField.getInt(memInfo) / 1024.0);
+                
+                java.lang.reflect.Field nativeHeapFreeSizeField = Debug.MemoryInfo.class.getField("nativeHeapFreeSize");
+                stats.putDouble("nativeHeapFreeMB", nativeHeapFreeSizeField.getInt(memInfo) / 1024.0);
+                
+                java.lang.reflect.Field dalvikHeapSizeField = Debug.MemoryInfo.class.getField("dalvikHeapSize");
+                stats.putDouble("dalvikHeapSizeMB", dalvikHeapSizeField.getInt(memInfo) / 1024.0);
+                
+                java.lang.reflect.Field dalvikHeapAllocatedSizeField = Debug.MemoryInfo.class.getField("dalvikHeapAllocatedSize");
+                stats.putDouble("dalvikHeapAllocatedMB", dalvikHeapAllocatedSizeField.getInt(memInfo) / 1024.0);
+                
+                java.lang.reflect.Field dalvikHeapFreeSizeField = Debug.MemoryInfo.class.getField("dalvikHeapFreeSize");
+                stats.putDouble("dalvikHeapFreeMB", dalvikHeapFreeSizeField.getInt(memInfo) / 1024.0);
+            } catch (Exception reflectEx) {
+                // Fallback: use available methods
+                stats.putDouble("totalPssKB", memInfo.getTotalPss());
+                stats.putDouble("nativePssKB", memInfo.nativePss);
+                stats.putDouble("dalvikPssKB", memInfo.dalvikPss);
+            }
             
             // Total PSS (Proportional Set Size) - closest to iOS resident memory
             stats.putDouble("totalPssMB", memInfo.getTotalPss() / 1024.0);
@@ -727,15 +746,34 @@ public class ViroFabricSceneManager {
             }
             stats.putInt("totalThreads", rootGroup.activeCount());
             
-            // GC statistics
-            stats.putLong("totalGcInvocations", Debug.getRuntimeStat("art.gc.gc-count"));
-            stats.putLong("totalGcTimeMs", Debug.getRuntimeStat("art.gc.gc-time"));
-            stats.putLong("totalAllocatedObjects", Debug.getRuntimeStat("art.gc.objects-allocated"));
-            stats.putLong("totalFreedObjects", Debug.getRuntimeStat("art.gc.objects-freed"));
-            
-            // Process uptime
-            long uptimeMs = System.currentTimeMillis() - Debug.getRuntimeStat("art.gc.gc-count-rate-histogram");
-            stats.putDouble("processUptimeSeconds", uptimeMs / 1000.0);
+            // GC statistics - Debug.getRuntimeStat returns String
+            try {
+                String gcCount = Debug.getRuntimeStat("art.gc.gc-count");
+                if (gcCount != null && !gcCount.isEmpty()) {
+                    stats.putLong("totalGcInvocations", Long.parseLong(gcCount));
+                }
+                
+                String gcTime = Debug.getRuntimeStat("art.gc.gc-time");
+                if (gcTime != null && !gcTime.isEmpty()) {
+                    stats.putLong("totalGcTimeMs", Long.parseLong(gcTime));
+                }
+                
+                String objectsAllocated = Debug.getRuntimeStat("art.gc.objects-allocated");
+                if (objectsAllocated != null && !objectsAllocated.isEmpty()) {
+                    stats.putLong("totalAllocatedObjects", Long.parseLong(objectsAllocated));
+                }
+                
+                String objectsFreed = Debug.getRuntimeStat("art.gc.objects-freed");
+                if (objectsFreed != null && !objectsFreed.isEmpty()) {
+                    stats.putLong("totalFreedObjects", Long.parseLong(objectsFreed));
+                }
+                
+                // Process uptime - use SystemClock instead
+                long uptimeMs = SystemClock.elapsedRealtime();
+                stats.putDouble("processUptimeSeconds", uptimeMs / 1000.0);
+            } catch (Exception gcStatsEx) {
+                Log.w(TAG, "Could not parse GC stats: " + gcStatsEx.getMessage());
+            }
             
         } catch (Exception e) {
             Log.w(TAG, "Could not get performance stats: " + e.getMessage());

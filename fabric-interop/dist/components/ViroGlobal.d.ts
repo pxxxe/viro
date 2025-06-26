@@ -35,7 +35,11 @@ export interface NativeViroType {
     recenterTracking: (nodeId: string) => void;
     project: (nodeId: string, point: [number, number, number]) => Promise<[number, number, number]>;
     unproject: (nodeId: string, point: [number, number, number]) => Promise<[number, number, number]>;
-    initialize: () => Promise<boolean>;
+    initialize: (config?: {
+        debug?: boolean;
+        arEnabled?: boolean;
+        worldAlignment?: string;
+    }) => Promise<boolean>;
 }
 export declare function getNativeViro(): NativeViroType | null;
 export declare function isNativeViroAvailable(): boolean;
