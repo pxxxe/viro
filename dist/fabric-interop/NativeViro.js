@@ -86,10 +86,10 @@ function unregisterEventListener(nodeId, eventName, callbackId) {
     }
 }
 // Initialize the Viro platform
-function initializeViro() {
+function initializeViro(config) {
     const nativeViro = (0, ViroGlobal_1.getNativeViro)();
     if (nativeViro) {
-        return nativeViro.initialize();
+        return nativeViro.initialize(config);
     }
     return Promise.reject(new Error("NativeViro not available"));
 }

@@ -10,3 +10,5 @@ export * from "./components/ViroUtils";
 export { generateNodeId, generateCallbackId, handleViroEvent, registerEventListener, unregisterEventListener, initializeViro, createScene, activateScene, deactivateScene, destroyScene, getSceneState, getMemoryStats, performMemoryCleanup, createNode, updateNode, deleteNode, addChild, removeChild, createMaterial, createAnimation, setARPlaneDetection, setARImageTargets, isViroJSIAvailable, type ViroNodeProps, type ViroNodeType, type ViroEventCallback, } from "./NativeViro";
 export { executeAnimation as executeNativeAnimation, updateMaterial as updateNativeMaterial, } from "./NativeViro";
 export { executeAnimation, updateMaterial } from "./NativeViro";
+export { default as ViroEventsManager } from "./ViroEventsManager";
+export type { Spec as ViroEventsTurboModuleSpec } from "./specs/ViroEventsTurboModule";
