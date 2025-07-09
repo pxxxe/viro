@@ -5,6 +5,8 @@
  *
  * This module provides proper event emission for JSI callbacks
  * in React Native's New Architecture (Fabric + TurboModules)
+ *
+ * @format
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_native_1 = require("react-native");

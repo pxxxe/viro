@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  // Manual component registration (no CodeGen)
+  // Enable CodeGen for TurboModule spec generation
   project: {
     ios: {},
     android: {},

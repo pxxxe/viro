@@ -4,6 +4,8 @@
  *
  * This module provides proper event emission for JSI callbacks
  * in React Native's New Architecture (Fabric + TurboModules)
+ *
+ * @format
  */
 
 import type { TurboModule } from "react-native";
@@ -11,17 +13,17 @@ import { TurboModuleRegistry } from "react-native";
 
 export interface Spec extends TurboModule {
   // Event listener management
-  addListener(eventName: string): void;
-  removeListeners(count: number): void;
+  readonly addListener: (eventName: string) => void;
+  readonly removeListeners: (count: number) => void;
 
   // Event emission methods
-  emitJSICallback(callbackId: string, eventData: Object): void;
-  emitNodeEvent(nodeId: string, eventName: string, eventData: Object): void;
-  emitSceneEvent(sceneId: string, eventName: string, eventData: Object): void;
+  readonly emitJSICallback: (callbackId: string, eventData: Object) => void;
+  readonly emitNodeEvent: (nodeId: string, eventName: string, eventData: Object) => void;
+  readonly emitSceneEvent: (sceneId: string, eventName: string, eventData: Object) => void;
 
   // Utility methods
-  isEventSystemReady(): boolean;
-  getActiveListenerCount(): number;
+  readonly isEventSystemReady: () => boolean;
+  readonly getActiveListenerCount: () => number;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>("ViroEvents");

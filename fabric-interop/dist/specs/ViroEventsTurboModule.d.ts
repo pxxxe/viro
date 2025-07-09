@@ -4,16 +4,18 @@
  *
  * This module provides proper event emission for JSI callbacks
  * in React Native's New Architecture (Fabric + TurboModules)
+ *
+ * @format
  */
 import type { TurboModule } from "react-native";
 export interface Spec extends TurboModule {
-    addListener(eventName: string): void;
-    removeListeners(count: number): void;
-    emitJSICallback(callbackId: string, eventData: Object): void;
-    emitNodeEvent(nodeId: string, eventName: string, eventData: Object): void;
-    emitSceneEvent(sceneId: string, eventName: string, eventData: Object): void;
-    isEventSystemReady(): boolean;
-    getActiveListenerCount(): number;
+    readonly addListener: (eventName: string) => void;
+    readonly removeListeners: (count: number) => void;
+    readonly emitJSICallback: (callbackId: string, eventData: Object) => void;
+    readonly emitNodeEvent: (nodeId: string, eventName: string, eventData: Object) => void;
+    readonly emitSceneEvent: (sceneId: string, eventName: string, eventData: Object) => void;
+    readonly isEventSystemReady: () => boolean;
+    readonly getActiveListenerCount: () => number;
 }
 declare const _default: Spec;
 export default _default;

@@ -35,6 +35,14 @@
   "engines": {
     "react-native": ">=0.76.9"
   },
+  "codegenConfig": {
+    "name": "ViroEventsSpec",
+    "type": "modules",
+    "jsSrcsDir": "fabric-interop/specs",
+    "android": {
+      "javaPackageName": "com.viromedia.bridge.fabric"
+    }
+  },
   "peerDependenciesMeta": {
     "expo": {
       "optional": true

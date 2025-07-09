@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *activeSceneId;
 
 // Scene state tracking
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSNumber *> *sceneStates;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, id> *sceneStates;
 
 // Memory management
 @property (nonatomic, strong) NSMutableArray<NSValue *> *managedNodes;
@@ -292,9 +292,9 @@
 }
 
 - (ViroFabricSceneState)getSceneState:(NSString *)sceneId {
-    NSNumber *stateNumber = self.sceneStates[sceneId];
-    if (stateNumber) {
-        return (ViroFabricSceneState)[stateNumber integerValue];
+    id stateValue = self.sceneStates[sceneId];
+    if (stateValue && [stateValue isKindOfClass:[NSNumber class]]) {
+        return (ViroFabricSceneState)[(NSNumber *)stateValue integerValue];
     }
     return ViroFabricSceneStateDestroyed;
 }
