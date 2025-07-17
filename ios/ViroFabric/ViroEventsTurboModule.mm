@@ -65,6 +65,12 @@ static ViroEventsTurboModule *sharedInstance = nil;
 
 RCT_EXPORT_MODULE(ViroEvents)
 
+// TurboModule installation method for New Architecture
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+    (const facebook::react::ObjCTurboModule::InitParams &)params {
+  return std::make_shared<facebook::react::ObjCTurboModule>(params);
+}
+
 RCT_EXPORT_METHOD(addListener:(NSString *)eventName) {
     [super addListener:eventName];
     [_activeEvents addObject:eventName];

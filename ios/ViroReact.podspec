@@ -34,10 +34,11 @@ Pod::Spec.new do |s|
   # React Native dependencies
   s.dependency 'React-Core'
   
-  # Fabric dependencies
+  # Fabric dependencies (New Architecture only)
   s.dependency 'React-RCTFabric'
   s.dependency 'React-Fabric'
   s.dependency 'React-FabricComponents'
+  s.dependency 'ReactCommon/turbomodule/core'
   
   # Fabric-specific build configuration
   s.pod_target_xcconfig = { 
@@ -51,7 +52,7 @@ Pod::Spec.new do |s|
       '"$(PODS_ROOT)/ViroKit/dist/include"',
       '"$(PODS_ROOT)/ViroKit/Headers"'
     ].join(' '),
-    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) RCT_NEW_ARCH_ENABLED=1',
+    'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) RCT_NEW_ARCH_ENABLED=1 RCT_FABRIC_ENABLED=1',
     'OTHER_CPLUSPLUSFLAGS' => '$(inherited) -std=c++17'
   }
   

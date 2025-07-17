@@ -9,12 +9,10 @@
 #import <React/RCTEventEmitter.h>
 #import <React/RCTBridgeModule.h>
 
-#ifdef RCT_NEW_ARCH_ENABLED
-#import <ViroEventsSpec/ViroEventsSpec.h>
-@interface ViroEventsTurboModule : RCTEventEmitter <NativeViroEventsSpecSpec>
-#else
-@interface ViroEventsTurboModule : RCTEventEmitter <RCTBridgeModule>
-#endif
+#import <React/RCTEventEmitter.h>
+#import <ReactCommon/RCTTurboModule.h>
+
+@interface ViroEventsTurboModule : RCTEventEmitter <RCTTurboModule>
 
 // Singleton access for JSI integration
 + (instancetype)sharedInstance;

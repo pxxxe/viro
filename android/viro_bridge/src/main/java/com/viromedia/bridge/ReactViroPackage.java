@@ -123,8 +123,8 @@ public class ReactViroPackage implements ReactPackage {
                 new ARSceneModule(reactContext),
                 new ARSceneNavigatorModule(reactContext),
                 new ARTrackingTargetsModule(reactContext),
-                new VRT3DSceneNavigatorModule(reactContext)
-                // Note: ViroEventsTurboModule is a TurboModule and is automatically discovered
+                new VRT3DSceneNavigatorModule(reactContext),
+                new ViroEventsTurboModule(reactContext)
         );
     }
 
