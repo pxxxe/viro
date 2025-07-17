@@ -208,8 +208,8 @@ public class ViroEventsTurboModule extends com.facebook.react.bridge.ReactContex
     }
     
     @Override
-    public void onCatalystInstanceDestroy() {
-        super.onCatalystInstanceDestroy();
+    public void invalidate() {
+        super.invalidate();
         cleanup();
     }
 }

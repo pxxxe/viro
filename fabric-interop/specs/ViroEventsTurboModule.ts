@@ -13,17 +13,17 @@ import { TurboModuleRegistry } from "react-native";
 
 export interface Spec extends TurboModule {
   // Event listener management
-  readonly addListener: (eventName: string) => void;
-  readonly removeListeners: (count: number) => void;
+  addListener: (eventName: string) => void;
+  removeListeners: (count: number) => void;
 
   // Event emission methods
-  readonly emitJSICallback: (callbackId: string, eventData: Object) => void;
-  readonly emitNodeEvent: (nodeId: string, eventName: string, eventData: Object) => void;
-  readonly emitSceneEvent: (sceneId: string, eventName: string, eventData: Object) => void;
+  emitJSICallback: (callbackId: string, eventData: Object) => void;
+  emitNodeEvent: (nodeId: string, eventName: string, eventData: Object) => void;
+  emitSceneEvent: (sceneId: string, eventName: string, eventData: Object) => void;
 
   // Utility methods
-  readonly isEventSystemReady: () => boolean;
-  readonly getActiveListenerCount: () => number;
+  isEventSystemReady: () => boolean;
+  getActiveListenerCount: () => number;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>("ViroEvents");

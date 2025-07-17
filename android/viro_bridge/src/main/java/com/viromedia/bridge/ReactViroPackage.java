@@ -85,6 +85,7 @@ import com.viromedia.bridge.module.PerfMonitor;
 import com.viromedia.bridge.module.SoundModule;
 import com.viromedia.bridge.module.VRT3DSceneNavigatorModule;
 import com.viromedia.bridge.module.VRTImageModule;
+import com.viromedia.bridge.fabric.ViroEventsTurboModule;
 
 import java.util.Arrays;
 import java.util.List;
@@ -123,6 +124,7 @@ public class ReactViroPackage implements ReactPackage {
                 new ARSceneNavigatorModule(reactContext),
                 new ARTrackingTargetsModule(reactContext),
                 new VRT3DSceneNavigatorModule(reactContext)
+                // Note: ViroEventsTurboModule is a TurboModule and is automatically discovered
         );
     }
 

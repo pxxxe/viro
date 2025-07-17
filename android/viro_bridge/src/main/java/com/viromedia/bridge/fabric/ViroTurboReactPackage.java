@@ -10,21 +10,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * ViroFabricPackage provides the React Native package registration for Viro Fabric components.
- * This enables React Native to discover and use the ViroFabricContainer component.
+ * TurboReactPackage for ViroEventsTurboModule
  */
-public class ViroFabricPackage implements ReactPackage {
+public class ViroTurboReactPackage implements ReactPackage {
 
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        // TurboModules are automatically discovered and registered
-        return Collections.emptyList();
+        return Arrays.<NativeModule>asList(
+            new ViroEventsTurboModule(reactContext)
+        );
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(
-            new ViroFabricContainerViewManager()
-        );
+        return Collections.emptyList();
     }
 }

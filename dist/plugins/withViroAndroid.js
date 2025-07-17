@@ -33,9 +33,11 @@ const withBranchAndroid = (config) => {
             fs_1.default.readFile(mainApplicationPath, "utf-8", (err, data) => {
                 if (isJava) {
                     data = (0, insertLinesHelper_1.insertLinesHelper)("import com.viromedia.bridge.ReactViroPackage;", `package ${config?.android?.package};`, data);
+                    data = (0, insertLinesHelper_1.insertLinesHelper)("import com.viromedia.bridge.fabric.ViroTurboReactPackage;", `package ${config?.android?.package};`, data);
                 }
                 else {
                     data = (0, insertLinesHelper_1.insertLinesHelper)("import com.viromedia.bridge.ReactViroPackage", `package ${config?.android?.package}`, data);
+                    data = (0, insertLinesHelper_1.insertLinesHelper)("import com.viromedia.bridge.fabric.ViroTurboReactPackage", `package ${config?.android?.package}`, data);
                 }
                 const viroPlugin = config?.plugins?.find((plugin) => Array.isArray(plugin) && plugin[0] === "@reactvision/react-viro");
                 if (Array.isArray(viroPlugin)) {
@@ -58,6 +60,13 @@ const withBranchAndroid = (config) => {
                             target +
                                 `              packages.add(ReactViroPackage(ReactViroPackage.ViroPlatform.${viroConfig}))\n`;
                     }
+                }
+                // Add TurboReactPackage for TurboModule support
+                if (isJava) {
+                    target = target + `      packages.add(new ViroTurboReactPackage())\n`;
+                }
+                else {
+                    target = target + `              packages.add(ViroTurboReactPackage())\n`;
                 }
                 if (isJava) {
                     data = (0, insertLinesHelper_1.insertLinesHelper)(target, "List<ReactPackage> packages = new PackageList(this).getPackages();", data);
@@ -138,10 +147,10 @@ const withViroProjectBuildGradle = (config) => (0, config_plugins_1.withProjectB
     }
     newConfig.modResults.contents = newConfig.modResults.contents.replace(/minSdkVersion.*/, `minSdkVersion = 24`);
     // Ensure New Architecture is enabled
-    if (!newConfig.modResults.contents.includes("newArchEnabled=true")) {
-        newConfig.modResults.contents +=
-            "\n# ViroReact requires New Architecture\nnewArchEnabled=true\n";
-    }
+    //if (!newConfig.modResults.contents.includes("newArchEnabled=true")) {
+    //  newConfig.modResults.contents +=
+    //    "\n// ViroReact requires New Architecture\nnewArchEnabled=true\n";
+    //}
     newConfig.modResults.contents = newConfig.modResults.contents.replace(/classpath\("com.android.tools.build:gradle.*/, `classpath('com.android.tools.build:gradle:4.1.1')`);
     return newConfig;
 });
@@ -151,7 +160,6 @@ const withViroAppBuildGradle = (config) => (0, config_plugins_1.withAppBuildGrad
     // ========================================================================
     // ViroReact New Architecture (Fabric) Dependencies
     // https://viro-community.readme.io/docs/installation-instructions
-    implementation project(':viro_bridge')
     implementation project(':gvr_common')
     implementation project(':arcore_client')
     implementation project(path: ':react_viro')
@@ -170,12 +178,11 @@ const withViroAppBuildGradle = (config) => (0, config_plugins_1.withAppBuildGrad
 });
 const withViroSettingsGradle = (config) => (0, config_plugins_1.withSettingsGradle)(config, async (config) => {
     config.modResults.contents += `
-include ':react_viro', ':arcore_client', ':gvr_common', ':viro_renderer', ':viro_bridge'
+include ':react_viro', ':arcore_client', ':gvr_common', ':viro_renderer'
 project(':arcore_client').projectDir = new File('../node_modules/@reactvision/react-viro/android/arcore_client')
 project(':gvr_common').projectDir = new File('../node_modules/@reactvision/react-viro/android/gvr_common')
 project(':viro_renderer').projectDir = new File('../node_modules/@reactvision/react-viro/android/viro_renderer')
 project(':react_viro').projectDir = new File('../node_modules/@reactvision/react-viro/android/react_viro')
-project(':viro_bridge').projectDir = new File('../node_modules/@reactvision/react-viro/android/viro_bridge')
     `;
     return config;
 });

@@ -3,7 +3,7 @@
   "main": "fabric-interop/dist/index.js",
   "module": "fabric-interop/dist/index.js",
   "types": "fabric-interop/dist/index.d.ts",
-  "version": "2.43.2",
+  "version": "2.43.3",
   "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
@@ -41,6 +41,9 @@
     "jsSrcsDir": "fabric-interop/specs",
     "android": {
       "javaPackageName": "com.viromedia.bridge.fabric"
+    },
+    "ios": {
+      "moduleName": "ViroEventsSpec"
     }
   },
   "peerDependenciesMeta": {

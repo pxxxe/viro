@@ -10,8 +10,8 @@
 #import <React/RCTBridgeModule.h>
 
 #ifdef RCT_NEW_ARCH_ENABLED
-#import "ViroEventsTurboModuleSpec.h"
-@interface ViroEventsTurboModule : RCTEventEmitter <NativeViroEventsSpec>
+#import <ViroEventsSpec/ViroEventsSpec.h>
+@interface ViroEventsTurboModule : RCTEventEmitter <NativeViroEventsSpecSpec>
 #else
 @interface ViroEventsTurboModule : RCTEventEmitter <RCTBridgeModule>
 #endif

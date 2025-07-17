@@ -58,9 +58,19 @@ const withBranchAndroid: ConfigPlugin<ViroConfigurationOptions> = (config) => {
             `package ${config?.android?.package};`,
             data
           );
+          data = insertLinesHelper(
+            "import com.viromedia.bridge.fabric.ViroTurboReactPackage;",
+            `package ${config?.android?.package};`,
+            data
+          );
         } else {
           data = insertLinesHelper(
             "import com.viromedia.bridge.ReactViroPackage",
+            `package ${config?.android?.package}`,
+            data
+          );
+          data = insertLinesHelper(
+            "import com.viromedia.bridge.fabric.ViroTurboReactPackage",
             `package ${config?.android?.package}`,
             data
           );
@@ -94,6 +104,13 @@ const withBranchAndroid: ConfigPlugin<ViroConfigurationOptions> = (config) => {
               target +
               `              packages.add(ReactViroPackage(ReactViroPackage.ViroPlatform.${viroConfig}))\n`;
           }
+        }
+        
+        // Add TurboReactPackage for TurboModule support
+        if (isJava) {
+          target = target + `      packages.add(new ViroTurboReactPackage())\n`;
+        } else {
+          target = target + `              packages.add(ViroTurboReactPackage())\n`;
         }
 
         if (isJava) {
