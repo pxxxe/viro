@@ -1,12 +1,18 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ViroARTrackingReasonConstants = exports.Viro3DSceneNavigator = exports.ViroVRSceneNavigator = exports.ViroVideo = exports.ViroText = exports.ViroSpotLight = exports.ViroSpinner = exports.ViroSphere = exports.ViroSpatialSound = exports.ViroSoundField = exports.ViroSound = exports.ViroAnimatedComponent = exports.ViroAmbientLight = exports.ViroAnimatedImage = exports.Viro360Video = exports.Viro360Image = exports.Viro3DObject = exports.ViroAnimations = exports.ViroSkyBox = exports.ViroSceneNavigator = exports.ViroSurface = exports.ViroScene = exports.ViroQuad = exports.ViroPortalScene = exports.ViroPortal = exports.ViroPolyline = exports.ViroPolygon = exports.ViroParticleEmitter = exports.ViroOrbitCamera = exports.ViroOmniLight = exports.ViroNode = exports.ViroMaterialVideo = exports.ViroARCamera = exports.ViroMaterials = exports.ViroImage = exports.ViroLightingEnvironment = exports.ViroGeometry = exports.ViroFlexView = exports.ViroDirectionalLight = exports.ViroController = exports.ViroCamera = exports.ViroButton = exports.ViroBox = exports.ViroARSceneNavigator = exports.ViroARScene = exports.ViroARPlaneSelector = exports.ViroARPlane = exports.ViroARTrackingTargets = exports.ViroARObjectMarker = exports.ViroARImageMarker = void 0;
-exports.VIRO_VERSION = exports.ViroRotateStateTypes = exports.ViroPinchStateTypes = exports.ViroClickStateTypes = exports.isARSupportedOnDevice = exports.polarToCartesianActual = exports.polarToCartesian = exports.ViroTrackingStateConstants = exports.ViroRecordingErrorConstants = void 0;
 /**
  * Copyright (c) 2016-present, Viro Media, Inc.
  * All rights reserved.
  *
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ViroARTrackingReasonConstants = exports.Viro3DSceneNavigator = exports.ViroVRSceneNavigator = exports.ViroVideo = exports.ViroText = exports.ViroSpotLight = exports.ViroSpinner = exports.ViroSphere = exports.ViroSpatialSound = exports.ViroSoundField = exports.ViroSound = exports.ViroAnimatedComponent = exports.ViroAmbientLight = exports.ViroAnimatedImage = exports.Viro360Video = exports.Viro360Image = exports.Viro3DObject = exports.ViroAnimations = exports.ViroSkyBox = exports.ViroSceneNavigator = exports.ViroSurface = exports.ViroScene = exports.ViroQuad = exports.ViroPortalScene = exports.ViroPortal = exports.ViroPolyline = exports.ViroPolygon = exports.ViroParticleEmitter = exports.ViroOrbitCamera = exports.ViroOmniLight = exports.ViroNode = exports.ViroMaterialVideo = exports.ViroARCamera = exports.ViroMaterials = exports.ViroImage = exports.ViroLightingEnvironment = exports.ViroGeometry = exports.ViroFlexView = exports.ViroDirectionalLight = exports.ViroController = exports.ViroCamera = exports.ViroButton = exports.ViroBox = exports.ViroARSceneNavigator = exports.ViroARScene = exports.ViroARPlaneSelector = exports.ViroARPlane = exports.ViroARTrackingTargets = exports.ViroARObjectMarker = exports.ViroARImageMarker = void 0;
+exports.ViroCameraTurboModule = exports.ViroSceneNavigatorTurboModule = exports.ViroReactTurboModule = exports.VIRO_VERSION = exports.ViroRotateStateTypes = exports.ViroPinchStateTypes = exports.ViroClickStateTypes = exports.isARSupportedOnDevice = exports.polarToCartesianActual = exports.polarToCartesian = exports.ViroTrackingStateConstants = exports.ViroRecordingErrorConstants = void 0;
+// New Architecture validation - ViroReact requires React Native New Architecture
+if (global.__turboModuleProxy == null) {
+    throw new Error('ViroReact: React Native New Architecture is required. ' +
+        'This library only works with React Native 0.76.9+ with New Architecture enabled. ' +
+        'Please enable New Architecture in your app configuration.');
+}
 const ViroAnimations_1 = require("./components/Animation/ViroAnimations");
 Object.defineProperty(exports, "ViroAnimations", { enumerable: true, get: function () { return ViroAnimations_1.ViroAnimations; } });
 const Viro3DObject_1 = require("./components/Viro3DObject");
@@ -119,3 +125,8 @@ const ViroSceneNavigator_1 = require("./components/ViroSceneNavigator");
 Object.defineProperty(exports, "ViroSceneNavigator", { enumerable: true, get: function () { return ViroSceneNavigator_1.ViroSceneNavigator; } });
 const ViroVersion_1 = require("./components/Utilities/ViroVersion");
 Object.defineProperty(exports, "VIRO_VERSION", { enumerable: true, get: function () { return ViroVersion_1.VIRO_VERSION; } });
+// TurboModule imports
+const specs_1 = require("./specs");
+Object.defineProperty(exports, "ViroReactTurboModule", { enumerable: true, get: function () { return specs_1.ViroReactTurboModule; } });
+Object.defineProperty(exports, "ViroSceneNavigatorTurboModule", { enumerable: true, get: function () { return specs_1.ViroSceneNavigatorTurboModule; } });
+Object.defineProperty(exports, "ViroCameraTurboModule", { enumerable: true, get: function () { return specs_1.ViroCameraTurboModule; } });

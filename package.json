@@ -1,8 +1,8 @@
 {
   "name": "@reactvision/react-viro",
-  "main": "fabric-interop/dist/index.js",
-  "module": "fabric-interop/dist/index.js",
-  "types": "fabric-interop/dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "version": "2.43.3",
   "license": "MIT",
   "publishConfig": {
@@ -18,7 +18,7 @@
     "test": "jest",
     "tsc": "tsc",
     "prebuild": "node -p \"'export const VIRO_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > components/Utilities/ViroVersion.ts",
-    "build": "cd fabric-interop && npm run build",
+    "build": "tsc",
     "build:legacy": "tsc && npm run copy-files",
     "build:all": "npm run build && npm run build:legacy",
     "bundle": "./prepare_release.sh",
@@ -36,14 +36,23 @@
     "react-native": ">=0.76.9"
   },
   "codegenConfig": {
-    "name": "ViroEventsSpec",
+    "name": "ViroReactSpec",
     "type": "modules",
-    "jsSrcsDir": "fabric-interop/specs",
+    "jsSrcsDir": "specs",
     "android": {
-      "javaPackageName": "com.viromedia.bridge.fabric"
+      "javaPackageName": "com.viromedia.bridge"
     },
     "ios": {
-      "moduleName": "ViroEventsSpec"
+      "moduleName": "ViroReactSpec"
+    }
+  },
+  "react-native": {
+    "ios": {
+      "project": "ios/ViroReact.xcodeproj"
+    },
+    "android": {
+      "sourceDir": "../android",
+      "packageImportPath": "import com.viromedia.bridge.ReactViroPackage;"
     }
   },
   "peerDependenciesMeta": {

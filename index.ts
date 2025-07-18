@@ -3,6 +3,15 @@
  * All rights reserved.
  *
  */
+
+// New Architecture validation - ViroReact requires React Native New Architecture
+if (global.__turboModuleProxy == null) {
+  throw new Error(
+    'ViroReact: React Native New Architecture is required. ' +
+    'This library only works with React Native 0.76.9+ with New Architecture enabled. ' +
+    'Please enable New Architecture in your app configuration.'
+  );
+}
 import { ViroAnimations } from "./components/Animation/ViroAnimations";
 import { Viro3DObject } from "./components/Viro3DObject";
 import { Viro360Image } from "./components/Viro360Image";
@@ -128,6 +137,13 @@ import { ViroSurface } from "./components/ViroSurface";
 import { ViroSceneNavigator } from "./components/ViroSceneNavigator";
 import { VIRO_VERSION } from "./components/Utilities/ViroVersion";
 
+// TurboModule imports
+import {
+  ViroReactTurboModule,
+  ViroSceneNavigatorTurboModule,
+  ViroCameraTurboModule,
+} from "./specs";
+
 export {
   ViroARImageMarker,
   ViroARObjectMarker,
@@ -249,4 +265,9 @@ export {
   ViroTextStyle,
   ViroStyle,
   VIRO_VERSION,
+  
+  // TurboModules for New Architecture
+  ViroReactTurboModule,
+  ViroSceneNavigatorTurboModule,
+  ViroCameraTurboModule,
 };

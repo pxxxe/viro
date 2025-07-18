@@ -86,6 +86,36 @@ import com.viromedia.bridge.module.SoundModule;
 import com.viromedia.bridge.module.VRT3DSceneNavigatorModule;
 import com.viromedia.bridge.module.VRTImageModule;
 import com.viromedia.bridge.fabric.ViroEventsTurboModule;
+import com.viromedia.bridge.fabric.ViroReactTurboModule;
+import com.viromedia.bridge.fabric.ViroSceneNavigatorViewManager;
+import com.viromedia.bridge.fabric.ViroSceneViewManager;
+import com.viromedia.bridge.fabric.ViroNodeViewManager;
+import com.viromedia.bridge.fabric.ViroBoxViewManager;
+import com.viromedia.bridge.fabric.ViroImageViewManager;
+import com.viromedia.bridge.fabric.ViroSphereViewManager;
+import com.viromedia.bridge.fabric.ViroFlexViewViewManager;
+import com.viromedia.bridge.fabric.ViroQuadViewManager;
+import com.viromedia.bridge.fabric.ViroDirectionalLightViewManager;
+import com.viromedia.bridge.fabric.ViroOmniLightViewManager;
+import com.viromedia.bridge.fabric.ViroSpotLightViewManager;
+import com.viromedia.bridge.fabric.ViroVideoViewManager;
+import com.viromedia.bridge.fabric.Viro3DObjectViewManager;
+import com.viromedia.bridge.fabric.ViroAnimatedComponentViewManager;
+import com.viromedia.bridge.fabric.ViroGeometryViewManager;
+import com.viromedia.bridge.fabric.ViroButtonViewManager;
+import com.viromedia.bridge.fabric.ViroSkyBoxViewManager;
+import com.viromedia.bridge.fabric.ViroSpinnerViewManager;
+import com.viromedia.bridge.fabric.ViroParticleEmitterViewManager;
+import com.viromedia.bridge.fabric.ViroSoundViewManager;
+import com.viromedia.bridge.fabric.Viro360ImageViewManager;
+import com.viromedia.bridge.fabric.ViroAnimatedImageViewManager;
+import com.viromedia.bridge.fabric.Viro360VideoViewManager;
+import com.viromedia.bridge.fabric.ViroMaterialVideoViewManager;
+import com.viromedia.bridge.fabric.ViroPolygonViewManager;
+import com.viromedia.bridge.fabric.ViroPolylineViewManager;
+import com.viromedia.bridge.fabric.ViroSurfaceViewManager;
+import com.viromedia.bridge.fabric.ViroSoundFieldViewManager;
+import com.viromedia.bridge.fabric.ViroSpatialSoundViewManager;
 
 import java.util.Arrays;
 import java.util.List;
@@ -124,13 +154,45 @@ public class ReactViroPackage implements ReactPackage {
                 new ARSceneNavigatorModule(reactContext),
                 new ARTrackingTargetsModule(reactContext),
                 new VRT3DSceneNavigatorModule(reactContext),
-                new ViroEventsTurboModule(reactContext)
+                new ViroEventsTurboModule(reactContext),
+                new ViroReactTurboModule(reactContext)
         );
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Arrays.<ViewManager>asList(
+                // New Architecture (Fabric) ViewManagers
+                new ViroSceneNavigatorViewManager(),
+                new ViroSceneViewManager(),
+                new ViroNodeViewManager(),
+                new ViroBoxViewManager(),
+                new ViroImageViewManager(),
+                new ViroSphereViewManager(),
+                new ViroFlexViewViewManager(),
+                new ViroQuadViewManager(),
+                new ViroDirectionalLightViewManager(),
+                new ViroOmniLightViewManager(),
+                new ViroSpotLightViewManager(),
+                new ViroVideoViewManager(),
+                new Viro3DObjectViewManager(),
+                new ViroAnimatedComponentViewManager(),
+                new ViroGeometryViewManager(),
+                new ViroButtonViewManager(),
+                new ViroSkyBoxViewManager(),
+                new ViroSpinnerViewManager(),
+                new ViroParticleEmitterViewManager(),
+                new ViroSoundViewManager(),
+                new Viro360ImageViewManager(),
+                new ViroAnimatedImageViewManager(),
+                new Viro360VideoViewManager(),
+                new ViroMaterialVideoViewManager(),
+                new ViroPolygonViewManager(),
+                new ViroPolylineViewManager(),
+                new ViroSurfaceViewManager(),
+                new ViroSoundFieldViewManager(),
+                new ViroSpatialSoundViewManager(),
+                // Legacy ViewManagers
                 new VRTSceneNavigatorManager(reactContext, mViroPlatform),
                 new VRTVRSceneNavigatorManager(reactContext, mViroPlatform),
                 new VRTSceneManagerImpl(reactContext),

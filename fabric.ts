@@ -1,9 +1,9 @@
 /**
- * Viro React Native - Fabric (New Architecture) Components
+ * Viro React Native - New Architecture Direct Import
  *
  * This entry point provides access to Viro components that are compatible with
- * React Native's New Architecture (Fabric). Use these components when your app
- * has the New Architecture enabled.
+ * React Native's New Architecture (Fabric). All components now use direct
+ * Fabric integration without an interop layer.
  *
  * @example
  * ```
@@ -11,4 +11,5 @@
  * ```
  */
 
-export * from "./fabric-interop";
+// Direct export from main index with New Architecture validation
+export * from "./index";
