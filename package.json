@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ReactVision/viro.git"
+    "url": "git+ssh://git@github.com/pxxxe/viro.git"
   },
   "description": "Maintained version of react-viro - New Architecture (Fabric) required",
   "scripts": {
